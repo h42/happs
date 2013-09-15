@@ -1,6 +1,7 @@
 import Network
 import System.IO
 import System.Cmd
+import System.Posix.User
 
 main = withSocketsDo $ do
     h <- connectTo "time.nist.gov" (PortNumber 13)
