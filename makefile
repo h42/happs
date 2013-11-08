@@ -1,4 +1,4 @@
-PROGS=sujit jntp words
+PROGS=sujit jntp new words
 
 all:$(PROGS)
 
@@ -10,11 +10,11 @@ sujit:sujit.hs
 jntp:jntp.hs
 	ghc -O -fwarn-name-shadowing -dynamic --make jntp.hs -o jntp
 
+new:new.hs
+	ghc -O -fwarn-name-shadowing -dynamic --make new.hs -o new
+
 words:words.hs
 	ghc -O -fwarn-name-shadowing -dynamic --make words.hs -o words
-
-pretty:pretty.hs
-	ghc -O -fwarn-name-shadowing -dynamic --make pretty.hs -o pretty
 
 install:
 	#do not send to /usr/local/bin since sudo will not work there
