@@ -18,7 +18,7 @@ words:words.hs
 
 install:
 	#do not send to /usr/local/bin since sudo will not work there
-	install -m755 pretty /usr/local/bin
+	install -m755 new /usr/local/bin
 	install -m755 jntp /usr/bin
 	install -o 0 -g 0 -m4711 sujit /usr/local/bin/
 

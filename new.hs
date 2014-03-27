@@ -22,7 +22,7 @@ main = do
         _ -> putStrLn "Usage: hnew <fn>"
 
 doit fn = do
-    let jpd = "abc.hs"
+    let jpd = "xxx.hs"
     tryIOError $ removeFile jpd
     system $ "ln -s "  ++  fn  ++  " " ++ jpd
     return ()
