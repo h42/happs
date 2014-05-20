@@ -17,7 +17,7 @@ main = do
                 s<-getLine
                 when ((not.null) s && toLower (head s) == 'y') (doit x2)
             else do
-                system $ "echo 'main = return ()' > " ++ x2
+                writeFile x2 "\nmain = do\n    return ()"
                 doit x2
         _ -> putStrLn "Usage: hnew <fn>"
 

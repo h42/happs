@@ -1,8 +1,19 @@
-PROGS=sujit jntp new words
+
+CLG = -fwarn-name-shadowing --make -O
+
+SFLAGS=-static -optl-static -optl-pthread
+
+PROGS=sujit jntp new hgrep words
+
+%.o : %.hs
+	ghc $(CLG) -c -o $@ $<
+
+% : %.hs
+	ghc $(CLG) -o $@ $<
+
 
 all:$(PROGS)
 
-SFLAGS=-static -optl-static -optl-pthread
 
 sujit:sujit.hs
 	ghc -O -fwarn-name-shadowing -dynamic --make sujit.hs -o sujit
