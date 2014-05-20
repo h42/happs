@@ -1,9 +1,9 @@
 
-CLG = -fwarn-name-shadowing --make -O
+CLG = -fwarn-name-shadowing --make -O -dynamic
 
 SFLAGS=-static -optl-static -optl-pthread
 
-PROGS=sujit jntp new hgrep words
+PROGS=sujit jntp new hgrep words ctemp
 
 %.o : %.hs
 	ghc $(CLG) -c -o $@ $<
@@ -13,19 +13,6 @@ PROGS=sujit jntp new hgrep words
 
 
 all:$(PROGS)
-
-
-sujit:sujit.hs
-	ghc -O -fwarn-name-shadowing -dynamic --make sujit.hs -o sujit
-
-jntp:jntp.hs
-	ghc -O -fwarn-name-shadowing -dynamic --make jntp.hs -o jntp
-
-new:new.hs
-	ghc -O -fwarn-name-shadowing -dynamic --make new.hs -o new
-
-words:words.hs
-	ghc -O -fwarn-name-shadowing -dynamic --make words.hs -o words
 
 install:
 	#do not send to /usr/local/bin since sudo will not work there
