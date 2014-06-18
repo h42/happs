@@ -5,7 +5,16 @@ import System.Process
 import System.Exit
 import Control.Monad
 
-allfiles _ fn = True
+main = do
+    argv <- getArgs
+    case argv of
+        [re, suffix] -> main2 re suffix
+        [re]         -> main2 re ".hs"
+        _            -> putStrLn "Usage: hgrep <Regular Expression> <quoted space separated suffix list>"
+
+main2 re suffix = do
+    fs <- getfiles "." (filterfunc (words suffix)) True
+    mapM_ (grepper re) fs
 
 getfiles idir ifunc recurse = do
     getfiles' idir
@@ -32,16 +41,4 @@ grepper re fn = do
         putStrLn fn
         putStrLn $ unlines $ map ("  " ++)
             (map (dropWhile (==' ')) (lines f1))
-
-
-main = do
-    let f re suffix = do
-        fs <- getfiles "." (filterfunc (words suffix)) True
-        mapM_ (grepper re) fs
-
-    argv <- getArgs
-    case argv of
-        [re', suffix'] -> f re' suffix'
-        [re']         -> f re' ".hs"
-        _ -> putStrLn "Usage: hgrep <Regular Expression> <quoted space separated suffix list>"
 
