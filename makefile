@@ -3,7 +3,7 @@ CLG = -fwarn-name-shadowing --make -O -dynamic
 
 SFLAGS=-static -optl-static -optl-pthread
 
-PROGS=sujit jntp new hgrep words ctemp
+PROGS=sujit new hgrep jntp words ctemp
 
 %.o : %.hs
 	ghc $(CLG) -c -o $@ $<
