@@ -1,9 +1,9 @@
-
+CFLAGS=-Wall
 CLG = -fwarn-name-shadowing --make -O -dynamic
 
 SFLAGS=-static -optl-static -optl-pthread
 
-PROGS=sujit new hgrep jntp words ctemp
+PROGS=ffilib.o sujit new hgrep hsize jntp words ctemp
 
 %.o : %.hs
 	ghc $(CLG) -c -o $@ $<
@@ -13,6 +13,9 @@ PROGS=sujit new hgrep jntp words ctemp
 
 
 all:$(PROGS)
+
+hsize:hsize.hs ffilib.o
+	ghc $(CLG) -o hsize hsize.hs ffilib.o
 
 install:
 	#do not send to /usr/local/bin since sudo will not work there
